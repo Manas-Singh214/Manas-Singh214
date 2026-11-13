@@ -3,10 +3,18 @@
   <img src="cards/hero.svg" width="100%" alt="Manas Singh - Hero">
   <br/><br/>
 
+  <!-- ASCII Art -->
+  <img src="cards/ascii_art.svg" width="100%" alt="ASCII art: Manas Singh, data, design, and software">
+  <br/><br/>
+
   <!-- Info Tiles -->
   <a href="#"><img src="cards/tile_1.svg" width="32.5%" alt="Data Stack"></a>
   <a href="#"><img src="cards/tile_2.svg" width="32.5%" alt="Web Stack"></a>
   <a href="#"><img src="cards/tile_3.svg" width="32.5%" alt="Education"></a>
+  <br/><br/>
+
+  <!-- Daily Commit Clock -->
+  <img src="cards/commit_clock.svg" width="100%" alt="Daily commit clock, scheduled for 05:30 IST">
   <br/><br/>
 
   <!-- Contribution Stats -->

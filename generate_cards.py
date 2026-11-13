@@ -2,6 +2,7 @@ import os
 import json
 import base64
 import subprocess
+from datetime import datetime, timedelta, timezone
 from xml.sax.saxutils import escape
 
 PALETTE = {
@@ -47,8 +48,34 @@ def render_svg(filename, width, height, content, delay_sec):
 
 render_svg("hero.svg", 800, 160, f"""<circle cx="80" cy="80" r="50" fill="{PALETTE['surface']}"/><image href="{PORTRAIT_B64}" x="30" y="30" width="100" height="100" clip-path="inset(0% round 50px)" /><text x="160" y="70" font-size="32" font-weight="bold" fill="{PALETTE['accent']}">Manas Singh</text><text x="160" y="105" font-size="18">Data Analyst &amp; Software Developer</text><text x="160" y="135" font-size="14" fill="{PALETTE['grid']}">"Where mathematics reveals patterns, design gives them purpose."</text>""", 0.1)
 
+ascii_lines = (
+    "+--------------------------------------------------------------+",
+    "|  MANAS SINGH                                                 |",
+    "|  DATA  /  DESIGN  /  SOFTWARE                                |",
+    "|                                                              |",
+    "|       +------------------+                                   |",
+    "|      /                  /|                                   |",
+    "|     +------------------+ |                                   |",
+    "|     |  IDEAS  ->  BUILD | +                                   |",
+    "|     |                   |/                                    |",
+    "|     +------------------+                                     |",
+    "+--------------------------------------------------------------+",
+)
+ascii_text = "".join(
+    f'<tspan x="32" dy="{0 if i == 0 else 20}">{escape(line)}</tspan>'
+    for i, line in enumerate(ascii_lines)
+)
+render_svg("ascii_art.svg", 800, 280, f"""<rect x="16" y="16" width="768" height="248" class="surface"/><text x="130" y="48" font-size="14" xml:space="preserve">{ascii_text}</text>""", 0.2)
+
 for i, (t, s) in enumerate([("Python | SQL | Tableau", "Data Stack"), ("FastAPI | React | Docker", "Web Stack"), ("BPIT IT '28", "Education")]):
     render_svg(f"tile_{i+1}.svg", 256, 100, f"""<rect x="10" y="10" width="236" height="80" class="surface"/><text x="128" y="45" font-size="16" font-weight="bold" text-anchor="middle" fill="{PALETTE['accent']}">{escape(t)}</text><text x="128" y="70" font-size="12" text-anchor="middle">{escape(s)}</text>""", 0.3 + (i * 0.1))
+
+ist = timezone(timedelta(hours=5, minutes=30))
+updated_at = datetime.now(ist)
+clock_hour = updated_at.hour % 12 + updated_at.minute / 60
+hour_angle = clock_hour * 30
+minute_angle = updated_at.minute * 6
+render_svg("commit_clock.svg", 800, 120, f"""<rect x="16" y="16" width="768" height="88" class="surface"/><circle cx="66" cy="60" r="32" fill="none" stroke="{PALETTE['accent']}" stroke-width="2"/><line x1="66" y1="60" x2="66" y2="43" stroke="{PALETTE['text']}" stroke-width="3" stroke-linecap="round" transform="rotate({hour_angle} 66 60)"/><line x1="66" y1="60" x2="66" y2="35" stroke="{PALETTE['accent']}" stroke-width="2" stroke-linecap="round" transform="rotate({minute_angle} 66 60)"/><circle cx="66" cy="60" r="3" fill="{PALETTE['accent']}"/><text x="120" y="51" font-size="18" font-weight="bold" fill="{PALETTE['accent']}">DAILY COMMIT CLOCK</text><text x="120" y="78" font-size="14">Last update: {updated_at.strftime('%Y-%m-%d %H:%M:%S')} IST  |  Scheduled daily at 05:30 IST</text>""", 0.25)
 
 stats = {"streak": 12, "active_days": 145, "busiest_day": "Tuesday"}
 if os.path.exists("github-stats.json"):
