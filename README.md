@@ -3,8 +3,8 @@
   <img src="cards/hero.svg" width="100%" alt="Manas Singh - Hero">
   <br/><br/>
 
-  <!-- ASCII Art -->
-  <img src="cards/ascii_art.svg" width="100%" alt="ASCII art: Manas Singh, data, design, and software">
+  <!-- Animated ASCII Portrait -->
+  <img src="cards/ascii_art.svg" width="100%" alt="Animated ASCII portrait of Manas Singh">
   <br/><br/>
 
   <!-- Linked Focus Tiles -->
