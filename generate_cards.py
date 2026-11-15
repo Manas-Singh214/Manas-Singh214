@@ -415,7 +415,7 @@ def render_commit_clock() -> None:
         f'fill="{PALETTE["ink"]}">{now.strftime("%H:%M")} IST</text>'
         f'<text x="838" y="70" text-anchor="end" font-size="14" '
         f'fill="{PALETTE["ink_soft"]}">Updated {now.strftime("%Y-%m-%d")} | '
-        "Scheduled daily at 05:30 IST</text>"
+        "Scheduled daily at 10:00 IST</text>"
     )
     render_svg(
         "commit_clock.svg",
